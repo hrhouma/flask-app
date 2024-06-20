@@ -1,7 +1,8 @@
-FROM python:2.7-onbuild
-RUN pip install flask
-RUN pip install redis
-RUN pip install mysql-python
-# RUN pip install -i requirements.txt
+FROM python:3.9
+COPY requirements.txt /app/
+RUN pip install -r /app/requirements.txt
+COPY . /app
+WORKDIR /app
 EXPOSE 5000
-CMD [ "python", "app.py" ]
+CMD ["python", "app.py"]
+
